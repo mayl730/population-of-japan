@@ -27,13 +27,14 @@ const chartOptions = ref({
   responsive: {
     rules: [{
       condition: {
-        maxWidth: 400,
+        maxWidth: 500
       },
       chartOptions: {
-        series: [{
-          size: '100%',
-          center: ['50%', '50%'],
-        }]
+        legend: {
+          align: 'center',
+          verticalAlign: 'bottom',
+          layout: 'horizontal'
+        }
       }
     }]
   }
@@ -42,15 +43,15 @@ const chartOptions = ref({
 
 <template>
   <!-- <div id="chart-container"> -->
-    <highcharts :options="chartOptions" id="chart-container"></highcharts>
+  <highcharts :options="chartOptions" id="chart-container"></highcharts>
   <!-- </div> -->
 </template>
 
 <style scoped>
 #chart-container {
-  background-color: aqua;
-  min-width: 300px;
-  max-width: 1000px;
+  background-color: red;
+  min-width: 310px;
+  max-width: 800px;
   padding: 10px;
 }
 </style>
