@@ -23,7 +23,8 @@
     "paths": {
       "@services/*": ["src/services/*"],
       "@store/*": ["src/store/*"],
-      "@types/": ["src/types/*"],
+      "@types/*": ["src/types/*"],
+      "@utils/*": ["src/utils/*"],
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],

@@ -3,17 +3,11 @@
 import axios from "axios";
 import { usePopulationStore } from "./store/population";
 import { onMounted } from "vue";
-import { APIClient } from "@services/index"
+import { APIClient } from "@services/index";
 
-const apiKey = import.meta.env.VITE_API_KEY;
 APIClient.get(
-    "https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=1",
-    {
-      headers: {
-        "X-API-KEY": apiKey,
-      },
-    }
-  )
+  "/api/v1/population/composition/perYear?cityCode=-&prefCode=1"
+)
   .then(function (response) {
     console.log(response);
   })
@@ -21,8 +15,6 @@ APIClient.get(
     console.log(error);
   })
   .finally(function () {});
-
-  
 
 const { populations, getPopulations } = usePopulationStore();
 console.log(populations);
