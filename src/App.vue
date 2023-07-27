@@ -1,5 +1,25 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import axios from "axios";
+
+const apiKey = import.meta.env.VITE_API_KEY;
+axios
+  .get(
+    "https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=1",
+    {
+      headers: {
+        "X-API-KEY": apiKey,
+      },
+    }
+  )
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .finally(function () {
+  });
 </script>
 
 <template>
