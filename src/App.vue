@@ -1,35 +1,16 @@
 <script setup lang="ts">
-// import HelloWorld from "./components/HelloWorld.vue";
-// import axios from "axios";
 import { usePopulationStore } from "./store/population";
-import PopulationChart from "@components/PopulationChart.vue"
+import { onMounted } from "vue";
 
-// import { onMounted } from "vue";
-// import { APIClient } from "@services/index";
-
-// APIClient.get(
-//   "/api/v1/population/composition/perYear?cityCode=-&prefCode=1"
-// )
-//   .then(function (response) {
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   })
-//   .finally(function () {});
+import PopulationChart from "@components/PopulationChart.vue";
 
 const { getPopulations, getYears } = usePopulationStore();
 
-getPopulations(10);
-getYears();
-
-// onMounted(async () => {
-//   axios.get("/pref_code_name.json").then(function (response) {
-//     console.log(response);
-//   });
-// });
+onMounted(async () => {
+  getPopulations(10);
+  getYears();
+});
 </script>
-
 
 <template>
   <div>
