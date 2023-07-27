@@ -8,6 +8,8 @@ export default defineConfig({
   resolve:{
     alias:{
       '@services': path.resolve(__dirname, './src/services'),
+      '@store': path.resolve(__dirname, './src/store'),
+      '@types': path.resolve(__dirname, './src/types'),
     }
   },
   plugins: [vue()],
