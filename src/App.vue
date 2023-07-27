@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
+// import HelloWorld from "./components/HelloWorld.vue";
 import axios from "axios";
+import { usePopulationStore } from "./store/population"
 
 const apiKey = import.meta.env.VITE_API_KEY;
 axios
@@ -20,18 +21,20 @@ axios
   })
   .finally(function () {
   });
+
+  const { populations, getPopulations } = usePopulationStore();
+
+  console.log(populations)
+  getPopulations();
+  
+  
 </script>
 
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+   <p>Hello</p>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <!-- <HelloWorld msg="Vite + Vue" /> -->
 </template>
 
 <style scoped>
