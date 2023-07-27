@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // import HelloWorld from "./components/HelloWorld.vue";
 import axios from "axios";
-import { usePopulationStore } from "./store/population"
+import { usePopulationStore } from "./store/population";
+import { onMounted } from "vue";
 
 const apiKey = import.meta.env.VITE_API_KEY;
 axios
@@ -19,22 +20,23 @@ axios
   .catch(function (error) {
     console.log(error);
   })
-  .finally(function () {
+  .finally(function () {});
+
+const { populations, getPopulations } = usePopulationStore();
+console.log(populations);
+getPopulations();
+
+onMounted(async () => {
+  axios.get("/pref_code_name.json").then(function (response) {
+    console.log(response);
   });
-
-  const { populations, getPopulations } = usePopulationStore();
-
-  console.log(populations)
-  getPopulations();
-  
-  
+});
 </script>
 
 <template>
   <div>
-   <p>Hello</p>
+    <p>Hello</p>
   </div>
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
 </template>
 
 <style scoped>
