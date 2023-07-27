@@ -3,11 +3,18 @@ import { fetchPopulationDataByPrefCode } from "@utils/fetch_population_by_pref_c
 
 export const usePopulationStore = defineStore("populations", {
   state: () => ({
-    populations: [99999] as number[],
+    years: [] as number[],
     populationsByPrefectures: {} as Record<number, number[]>,
   }),
   actions: {
-    async getPopulations(){
+    async getYears() {
+      const data = await fetchPopulationDataByPrefCode(1);
+      data.forEach((item: { [x: string]: any }) =>
+        this.years.push(item["year"])
+      );
+      return this.years;
+    },
+    async getPopulations() {
       const data = await fetchPopulationDataByPrefCode(1);
       console.log(data);
     },

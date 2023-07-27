@@ -16,9 +16,10 @@ import { usePopulationStore } from "./store/population";
 //   })
 //   .finally(function () {});
 
-const { populations, getPopulations } = usePopulationStore();
+const { populations, getPopulations, getYears } = usePopulationStore();
 console.log(populations);
 getPopulations();
+getYears();
 
 // onMounted(async () => {
 //   axios.get("/pref_code_name.json").then(function (response) {
