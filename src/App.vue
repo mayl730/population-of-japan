@@ -3,10 +3,10 @@
 import axios from "axios";
 import { usePopulationStore } from "./store/population";
 import { onMounted } from "vue";
+import { APIClient } from "@services/index"
 
 const apiKey = import.meta.env.VITE_API_KEY;
-axios
-  .get(
+APIClient.get(
     "https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=1",
     {
       headers: {
@@ -21,6 +21,8 @@ axios
     console.log(error);
   })
   .finally(function () {});
+
+  
 
 const { populations, getPopulations } = usePopulationStore();
 console.log(populations);
