@@ -16,9 +16,9 @@ import { usePopulationStore } from "./store/population";
 //   })
 //   .finally(function () {});
 
-const { populations, getPopulations, getYears } = usePopulationStore();
-console.log(populations);
-getPopulations();
+const { getPopulations, getYears } = usePopulationStore();
+
+getPopulations(10);
 getYears();
 
 // onMounted(async () => {
