@@ -19,14 +19,14 @@ export const usePopulationStore = defineStore("populations", {
         return [];
       } else if (this.populationsByPrefectures[prefCode]) {
         console.log("cache hit");
-        console.log(this.populationsByPrefectures);
+        // console.log(this.populationsByPrefectures);
         return this.populationsByPrefectures[prefCode];
       } else {
         console.log("cache miss");
         const data = await fetchPopulationDataByPrefCode(prefCode);
         const populationArray = data.map((item: { value: any }) => item.value);
         this.populationsByPrefectures[prefCode] = populationArray;
-        console.log(this.populationsByPrefectures);
+        // console.log(this.populationsByPrefectures);
         return this.populationsByPrefectures[prefCode];
       }
     },

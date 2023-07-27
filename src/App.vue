@@ -4,7 +4,8 @@ import { onMounted } from "vue";
 
 import PopulationChart from "@components/PopulationChart.vue";
 
-const { getPopulations, getYears } = usePopulationStore();
+const { getPopulations, getYears, populationsByPrefectures } =
+  usePopulationStore();
 
 onMounted(async () => {
   getPopulations(10);
@@ -14,8 +15,9 @@ onMounted(async () => {
 
 <template>
   <div>
-    <p>HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello</p>
-    <PopulationChart />
+    <PopulationChart
+      v-if="Object.keys(populationsByPrefectures).length !== 0"
+    />
   </div>
 </template>
 
