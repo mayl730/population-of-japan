@@ -5,6 +5,20 @@ export const usePopulationStore = defineStore("populations", {
   state: () => ({
     years: [] as number[],
     populationsByPrefectures: {} as { [prefCode: number]: any[] },
+    chartOptions: {
+      chart: {
+        type: "spline",
+      },
+      title: {
+        text: "Entire title",
+      },
+      series: [
+        {
+          data: [10, 0, 8, 2, 6, 4, 5, 5],
+        },
+      ],
+    },
+    title: "",
   }),
   actions: {
     async getYears() {

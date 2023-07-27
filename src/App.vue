@@ -2,6 +2,8 @@
 // import HelloWorld from "./components/HelloWorld.vue";
 // import axios from "axios";
 import { usePopulationStore } from "./store/population";
+import PopulationChart from "@components/PopulationChart.vue"
+
 // import { onMounted } from "vue";
 // import { APIClient } from "@services/index";
 
@@ -28,9 +30,11 @@ getYears();
 // });
 </script>
 
+
 <template>
   <div>
-    <p>Hello</p>
+    <p>HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello</p>
+    <PopulationChart />
   </div>
 </template>
 
