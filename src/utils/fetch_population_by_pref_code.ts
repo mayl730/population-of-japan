@@ -1,14 +1,9 @@
 import { APIClient } from "@services/index.ts";
 
-export async function fetchPopulationDataByPrefCode() {
-  try {
-    const response = await APIClient.get(
-      "/api/v1/population/composition/perYear?cityCode=-&prefCode=1"
-    );
-    console.log(response);
-    return response;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
+export async function fetchPopulationDataByPrefCode(prefCode: number) {
+  return await APIClient.get(
+    `/api/v1/population/composition/perYear?cityCode=-&prefCode=${prefCode}`
+  )
+    .then((res) => res.data.result.data[0].data)
+    .catch((err) => console.log(err));
 }

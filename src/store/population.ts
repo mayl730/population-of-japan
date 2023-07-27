@@ -7,8 +7,9 @@ export const usePopulationStore = defineStore("populations", {
     populationsByPrefectures: {} as Record<number, number[]>,
   }),
   actions: {
-    getPopulations() {
-      fetchPopulationDataByPrefCode()
+    async getPopulations(){
+      const data = await fetchPopulationDataByPrefCode(1);
+      console.log(data);
     },
   },
 });

@@ -23,7 +23,7 @@
     "paths": {
       "@services/*": ["src/services/*"],
       "@store/*": ["src/store/*"],
-      "@types/*": ["src/types/*"],
+      "@customTypes/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"],
     }
   },

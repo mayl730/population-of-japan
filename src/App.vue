@@ -1,30 +1,30 @@
 <script setup lang="ts">
 // import HelloWorld from "./components/HelloWorld.vue";
-import axios from "axios";
+// import axios from "axios";
 import { usePopulationStore } from "./store/population";
-import { onMounted } from "vue";
-import { APIClient } from "@services/index";
+// import { onMounted } from "vue";
+// import { APIClient } from "@services/index";
 
-APIClient.get(
-  "/api/v1/population/composition/perYear?cityCode=-&prefCode=1"
-)
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-  .finally(function () {});
+// APIClient.get(
+//   "/api/v1/population/composition/perYear?cityCode=-&prefCode=1"
+// )
+//   .then(function (response) {
+//     console.log(response);
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   })
+//   .finally(function () {});
 
 const { populations, getPopulations } = usePopulationStore();
 console.log(populations);
 getPopulations();
 
-onMounted(async () => {
-  axios.get("/pref_code_name.json").then(function (response) {
-    console.log(response);
-  });
-});
+// onMounted(async () => {
+//   axios.get("/pref_code_name.json").then(function (response) {
+//     console.log(response);
+//   });
+// });
 </script>
 
 <template>

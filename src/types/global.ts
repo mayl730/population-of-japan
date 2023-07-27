@@ -1,3 +1,3 @@
-export interface Prefectures  {
-    [prefCode: number]: string;
-  }
+export interface Prefectures {
+  [prefCode: number]: string;
+}
