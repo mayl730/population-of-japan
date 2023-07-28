@@ -5,6 +5,12 @@ export const usePopulationStore = defineStore("populations", {
   state: () => ({
     years: [] as number[],
     populationsByPrefectures: {} as { [prefCode: number]: any[] },
+    graphDataSet: [
+      {
+        name: "A公司員工",
+        data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18],
+      },
+    ] as { name: string; data: number[] }[],
   }),
   actions: {
     async getYears() {

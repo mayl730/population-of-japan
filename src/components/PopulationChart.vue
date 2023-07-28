@@ -2,14 +2,16 @@
 import { ref } from "vue";
 import { usePopulationStore } from "../store/population";
 
-const { populationsByPrefectures } = usePopulationStore();
-const array = populationsByPrefectures[10];
-console.log(populationsByPrefectures);
+const { populationsByPrefectures, graphDataSet, years} = usePopulationStore();
+// console.log(populationsByPrefectures);
 
 const chartOptions = ref({
   title: {
     text: "都道府県の人口一覧",
     align: "center",
+  },
+  xAxis: {
+    categories: years
   },
   chart: {
     type: "spline",
@@ -18,32 +20,41 @@ const chartOptions = ref({
       scrollPositionX: 1,
     },
   },
-  series: [
-    {
-      data: array,
-    },
-  ],
-
+  series: graphDataSet,
   responsive: {
-    rules: [{
-      condition: {
-        maxWidth: 500
+    rules: [
+      {
+        condition: {
+          maxWidth: 500,
+        },
+        chartOptions: {
+          legend: {
+            align: "center",
+            verticalAlign: "bottom",
+            layout: "horizontal",
+          },
+        },
       },
-      chartOptions: {
-        legend: {
-          align: 'center',
-          verticalAlign: 'bottom',
-          layout: 'horizontal'
-        }
-      }
-    }]
-  }
+    ],
+  },
 });
+
+// function update() {
+//   var seriesChart = chartOptions.series[0];
+//   const array1 = populationsByPrefectures[1];
+//    var seriesChart =
+//    seriesChart.update({
+//      data: array1
+//    });
 </script>
 
 <template>
   <!-- <div id="chart-container"> -->
-  <highcharts :options="chartOptions" id="chart-container"></highcharts>
+  <highcharts
+    :options="chartOptions"
+    id="chart-container"
+    onchange="update()"
+  ></highcharts>
   <!-- </div> -->
 </template>
 
