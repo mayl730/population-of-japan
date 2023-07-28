@@ -6,7 +6,7 @@ const {graphDataSet, years} = usePopulationStore();
 
 const chartOptions = ref({
   title: {
-    text: "都道府県の人口一覧",
+    text: "",
     align: "center",
   },
   xAxis: {
@@ -18,7 +18,19 @@ const chartOptions = ref({
       minWidth: 600,
       scrollPositionX: 1,
     },
+    backgroundColor: {
+            linearGradient: [0, 0, 500, 500],
+            stops: [
+                [0, 'rgb(255, 255, 255)'],
+                [1, 'rgb(240, 240, 255)']
+            ]
+        },
   },
+  legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
   series: graphDataSet,
   responsive: {
     rules: [
@@ -38,30 +50,22 @@ const chartOptions = ref({
   },
 });
 
-// function update() {
-//   var seriesChart = chartOptions.series[0];
-//   const array1 = populationsByPrefectures[1];
-//    var seriesChart =
-//    seriesChart.update({
-//      data: array1
-//    });
 </script>
 
 <template>
-  <!-- <div id="chart-container"> -->
   <highcharts
     :options="chartOptions"
     id="chart-container"
     onchange="update()"
   ></highcharts>
-  <!-- </div> -->
+
 </template>
 
 <style scoped>
 #chart-container {
-  background-color: red;
+  /* background-color: red; */
   min-width: 310px;
-  max-width: 800px;
+  max-width: 1200px;
   padding: 10px;
 }
 </style>
