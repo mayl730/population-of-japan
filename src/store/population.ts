@@ -6,13 +6,14 @@ import _ from "lodash";
 export const usePopulationStore = defineStore("populations", {
   state: () => ({
     years: [] as number[],
-    populationsByPrefectures: {} as { [prefCode: number]: any[] },
+    populationsByPrefectures: {} as { [prefCode: number]: number[] },
     graphDataSet: [] as { name: string; data: number[] }[],
+    dataAdded: {} as { [prefCode: number]: boolean },
     allChecked: false,
   }),
   actions: {
     async initializeData() {
-      console.log('initializeData')
+      console.log("initializeData");
     },
     async getYears() {
       const data = await fetchPopulationDataByPrefCode(1);
@@ -38,6 +39,11 @@ export const usePopulationStore = defineStore("populations", {
       }
     },
     async addGraphDataSet(prefCode: number) {
+      if (this.dataAdded[prefCode]) {
+        return;
+      } else {
+        this.dataAdded[prefCode] = true;
+      }
       const prefName = await getPrefNameFromCode(prefCode);
       const populationArray = await this.getPopulations(prefCode);
       this.graphDataSet.push({
@@ -47,12 +53,12 @@ export const usePopulationStore = defineStore("populations", {
       console.log(this.graphDataSet);
     },
     async removeGraphDataSet(prefCode: number) {
+      this.dataAdded[prefCode] = false;
       const prefName = await getPrefNameFromCode(prefCode);
       _.remove(this.graphDataSet, (data) => data.name === prefName);
-      console.log(this.graphDataSet);
     },
     async toggleAllChecked() {
       this.allChecked = !this.allChecked;
-    }
+    },
   },
 });
