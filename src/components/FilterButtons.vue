@@ -2,13 +2,19 @@
 import { usePopulationStore } from "../store/population";
 import { ref } from "vue";
 
-const { addGraphDataSet } = usePopulationStore();
+const { addGraphDataSet, removeGraphDataSet } = usePopulationStore();
 const checkedValue = ref([]);
 
 function handleCheckboxChange(_event: Event) {
   const isChecked = checkedValue.value.length !== 0;
-  addGraphDataSet(1);
-  console.log(isChecked);
+
+  if (isChecked) {
+    addGraphDataSet(1);
+  } else {
+    removeGraphDataSet(1);
+  }
+  
+//   console.log(isChecked);
 }
 </script>
 

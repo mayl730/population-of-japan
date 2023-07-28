@@ -37,11 +37,10 @@ export const usePopulationStore = defineStore("populations", {
         const data = await fetchPopulationDataByPrefCode(prefCode);
         const populationArray = data.map((item: { value: any }) => item.value);
         this.populationsByPrefectures[prefCode] = populationArray;
-        console.log(this.populationsByPrefectures);
+        // console.log(this.populationsByPrefectures);
         return this.populationsByPrefectures[prefCode];
       }
     },
-
     async addGraphDataSet(prefCode: number) {
       const prefName = await prefCodeToPrefName(prefCode);
       const populationArray = await this.getPopulations(prefCode);
@@ -50,6 +49,10 @@ export const usePopulationStore = defineStore("populations", {
         data: populationArray,
       });
       console.log(this.graphDataSet);
+    },
+    async removeGraphDataSet(prefCode: number) {
+      const prefName = await prefCodeToPrefName(prefCode);
+
     },
   },
 });
