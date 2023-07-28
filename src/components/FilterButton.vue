@@ -34,7 +34,11 @@ if (defaultChecked) {
 }
 
 watch(allChecked, () => {
-  checked.value = !checked.value;
+  if(allChecked.value) {
+    checked.value = true;
+  } else {
+    checked.value = false;
+  }
   handleCheckboxChange();
 });
 
