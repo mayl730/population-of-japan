@@ -18,13 +18,20 @@ import { getPrefNameFromCode } from "@utils/get_pref_name_from_code";
 import { usePopulationStore } from "@store/population";
 import { ref, watch } from "vue";
 
-const { prefCode } = defineProps(["prefCode"]);
+const { prefCode, defaultChecked } = defineProps([
+  "prefCode",
+  "defaultChecked",
+]);
 const { addGraphDataSet, removeGraphDataSet } = usePopulationStore();
 const { allChecked } = storeToRefs(usePopulationStore());
 
-let checked = ref(false);
+let checked = ref(defaultChecked);
 
 const name = getPrefNameFromCode(prefCode);
+
+if (defaultChecked) {
+  handleCheckboxChange();
+}
 
 watch(allChecked, () => {
   checked.value = !checked.value;
@@ -35,7 +42,6 @@ function handleCheckboxChange() {
   if (checked.value) {
     addGraphDataSet(prefCode);
   } else {
-    console.log("remove");
     removeGraphDataSet(prefCode);
   }
 }

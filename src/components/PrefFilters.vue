@@ -2,7 +2,10 @@
   <div>
     <button @click="toggleAllChecked">Select All</button>
     <template v-for="prefCode in 47" :key="prefCode">
-      <FilterButton :prefCode="prefCode"/>
+      <FilterButton
+        :prefCode="prefCode"
+        :defaultChecked="prefCode === 13 ? true : false"
+      />
     </template>
   </div>
 </template>
@@ -12,7 +15,6 @@ import FilterButton from "./FilterButton.vue";
 import { usePopulationStore } from "@store/population";
 
 const { toggleAllChecked } = usePopulationStore();
-
 </script>
 
 <style scoped></style>

@@ -7,16 +7,7 @@ export const usePopulationStore = defineStore("populations", {
   state: () => ({
     years: [] as number[],
     populationsByPrefectures: {} as { [prefCode: number]: any[] },
-    graphDataSet: [
-      {
-        name: "群馬県",
-        data: [
-          1578476, 1605584, 1658909, 1756480, 1848562, 1921259, 1966265,
-          2003540, 2024852, 2024135, 2008068, 1973115, 1939110, 1865565,
-          1796233, 1719914, 1637642, 1552950,
-        ],
-      },
-    ] as { name: string; data: number[] }[],
+    graphDataSet: [] as { name: string; data: number[] }[],
     allChecked: false,
   }),
   actions: {
