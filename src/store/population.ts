@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { fetchPopulationDataByPrefCode } from "@utils/fetch_population_by_pref_code.ts";
-import { prefCodeToPrefName } from "@utils/pref_code_to_pref_name.ts";
+import { getPrefNameFromCode } from "@utils/get_pref_name_from_code";
 import _ from "lodash";
 
 export const usePopulationStore = defineStore("populations", {
@@ -19,6 +19,9 @@ export const usePopulationStore = defineStore("populations", {
     ] as { name: string; data: number[] }[],
   }),
   actions: {
+    async initializeData() {
+      console.log('initializeData')
+    },
     async getYears() {
       const data = await fetchPopulationDataByPrefCode(1);
       data.forEach((item: { [x: string]: any }) =>
@@ -43,7 +46,7 @@ export const usePopulationStore = defineStore("populations", {
       }
     },
     async addGraphDataSet(prefCode: number) {
-      const prefName = await prefCodeToPrefName(prefCode);
+      const prefName = await getPrefNameFromCode(prefCode);
       const populationArray = await this.getPopulations(prefCode);
       this.graphDataSet.push({
         name: prefName,
@@ -52,10 +55,8 @@ export const usePopulationStore = defineStore("populations", {
       console.log(this.graphDataSet);
     },
     async removeGraphDataSet(prefCode: number) {
-      const prefName = await prefCodeToPrefName(prefCode);
-      _.remove(this.graphDataSet, function(data) {
-        return data.name === prefName;
-      });
+      const prefName = await getPrefNameFromCode(prefCode);
+      _.remove(this.graphDataSet, (data) => data.name === prefName);
       console.log(this.graphDataSet);
     },
   },
