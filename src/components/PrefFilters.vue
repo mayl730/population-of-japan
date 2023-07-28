@@ -1,6 +1,8 @@
 <template>
   <div>
-    <FilterButton :prefCode="1"/>
+    <template v-for="prefCode in 47" :key="prefCode">
+      <FilterButton :prefCode="prefCode" />
+    </template>
   </div>
 </template>
 

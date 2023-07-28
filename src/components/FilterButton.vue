@@ -10,7 +10,6 @@
     />
     {{ name }}</label
   >
-  {{ checkedValue }}
 </template>
 
 <script setup lang="ts">
