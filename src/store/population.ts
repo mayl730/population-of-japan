@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { fetchPopulationDataByPrefCode } from "@utils/fetch_population_by_pref_code.ts";
 import { prefCodeToPrefName } from "@utils/pref_code_to_pref_name.ts";
+import _ from "lodash";
 
 export const usePopulationStore = defineStore("populations", {
   state: () => ({
@@ -52,7 +53,10 @@ export const usePopulationStore = defineStore("populations", {
     },
     async removeGraphDataSet(prefCode: number) {
       const prefName = await prefCodeToPrefName(prefCode);
-
+      this.graphDataSet = this.graphDataSet.filter(
+        (item) => item.name !== prefName
+      );
+      console.log(this.graphDataSet);
     },
   },
 });
