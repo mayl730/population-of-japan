@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { fetchPopulationDataByPrefCode } from "@utils/fetch_population_by_pref_code.ts";
+import { prefCodeToPrefName } from "@utils/pref_code_to_pref_name.ts";
 
 export const usePopulationStore = defineStore("populations", {
   state: () => ({
