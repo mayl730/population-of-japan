@@ -8,8 +8,12 @@ export const usePopulationStore = defineStore("populations", {
     populationsByPrefectures: {} as { [prefCode: number]: any[] },
     graphDataSet: [
       {
-        name: "A公司員工",
-        data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18],
+        name: "群馬県",
+        data: [
+          1578476, 1605584, 1658909, 1756480, 1848562, 1921259, 1966265,
+          2003540, 2024852, 2024135, 2008068, 1973115, 1939110, 1865565,
+          1796233, 1719914, 1637642, 1552950,
+        ],
       },
     ] as { name: string; data: number[] }[],
   }),
@@ -33,9 +37,19 @@ export const usePopulationStore = defineStore("populations", {
         const data = await fetchPopulationDataByPrefCode(prefCode);
         const populationArray = data.map((item: { value: any }) => item.value);
         this.populationsByPrefectures[prefCode] = populationArray;
-        // console.log(this.populationsByPrefectures);
+        console.log(this.populationsByPrefectures);
         return this.populationsByPrefectures[prefCode];
       }
+    },
+
+    async addGraphDataSet(prefCode: number) {
+      const prefName = await prefCodeToPrefName(prefCode);
+      const populationArray = await this.getPopulations(prefCode);
+      this.graphDataSet.push({
+        name: prefName,
+        data: populationArray,
+      });
+      console.log(this.graphDataSet);
     },
   },
 });

@@ -1,12 +1,13 @@
 <script setup lang="ts">
-// import { usePopulationStore } from "../store/population";
+import { usePopulationStore } from "../store/population";
 import { ref } from "vue";
 
-// const { populationsByPrefectures } = usePopulationStore();
+const { addGraphDataSet } = usePopulationStore();
 const checkedValue = ref([]);
 
 function handleCheckboxChange(_event: Event) {
   const isChecked = checkedValue.value.length !== 0;
+  addGraphDataSet(1);
   console.log(isChecked);
 }
 </script>
