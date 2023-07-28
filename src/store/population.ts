@@ -17,6 +17,7 @@ export const usePopulationStore = defineStore("populations", {
         ],
       },
     ] as { name: string; data: number[] }[],
+    allChecked: false,
   }),
   actions: {
     async initializeData() {
@@ -59,5 +60,8 @@ export const usePopulationStore = defineStore("populations", {
       _.remove(this.graphDataSet, (data) => data.name === prefName);
       console.log(this.graphDataSet);
     },
+    async toggleAllChecked() {
+      this.allChecked = !this.allChecked;
+    }
   },
 });

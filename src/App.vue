@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePopulationStore } from "./store/population";
-import { onMounted} from "vue";
+import { onMounted } from "vue";
 
 import PopulationChart from "@components/PopulationChart.vue";
 // import FilterButton from "@components/FilterButton.vue";
@@ -11,7 +11,7 @@ const {
   getPopulations,
   getYears,
   populationsByPrefectures,
-  years
+  years,
 } = usePopulationStore();
 
 onMounted(async () => {
@@ -28,4 +28,3 @@ onMounted(async () => {
 </template>
 
 <style scoped></style>
-@utils/get_pref_name_from_code
