@@ -53,9 +53,9 @@ export const usePopulationStore = defineStore("populations", {
     },
     async removeGraphDataSet(prefCode: number) {
       const prefName = await prefCodeToPrefName(prefCode);
-      this.graphDataSet = this.graphDataSet.filter(
-        (item) => item.name !== prefName
-      );
+      _.remove(this.graphDataSet, function(data) {
+        return data.name === prefName;
+      });
       console.log(this.graphDataSet);
     },
   },
