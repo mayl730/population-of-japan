@@ -11,7 +11,6 @@ const {
   getPopulations,
   getYears,
   populationsByPrefectures,
-  years,
 } = usePopulationStore();
 
 onMounted(async () => {
@@ -23,7 +22,6 @@ onMounted(async () => {
 
 <template>
   <PrefFilters />
-  <p>{{ years }}</p>
   <PopulationChart v-if="Object.keys(populationsByPrefectures).length !== 0" />
 </template>
 

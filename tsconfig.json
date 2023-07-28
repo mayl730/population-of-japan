@@ -26,6 +26,7 @@
       "@customTypes/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"],
       "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"],
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/main.ts"],

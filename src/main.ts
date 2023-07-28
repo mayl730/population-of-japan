@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import HighchartsVue from "highcharts-vue";
 
-import './style.css'
+import '@assets/css/reset.css'
 import App from './App.vue'
 
 const store = createPinia()
