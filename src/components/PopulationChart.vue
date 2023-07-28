@@ -2,8 +2,7 @@
 import { ref } from "vue";
 import { usePopulationStore } from "../store/population";
 
-const { populationsByPrefectures, graphDataSet, years} = usePopulationStore();
-// console.log(populationsByPrefectures);
+const {graphDataSet, years} = usePopulationStore();
 
 const chartOptions = ref({
   title: {
