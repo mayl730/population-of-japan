@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { usePopulationStore } from "../store/population";
 
-const {graphDataSet, years} = usePopulationStore();
+const { graphDataSet, years } = usePopulationStore();
 
 const chartOptions = ref({
   title: {
@@ -10,7 +10,20 @@ const chartOptions = ref({
     align: "center",
   },
   xAxis: {
-    categories: years
+    title: {
+      text: "年次",
+      style: {
+        color: "white",
+        fontSize: "14px",
+      },
+    },
+
+    categories: years,
+  },
+  yAxis: {
+    title: {
+      text: "人口",
+    },
   },
   chart: {
     type: "spline",
@@ -18,19 +31,14 @@ const chartOptions = ref({
       minWidth: 600,
       scrollPositionX: 1,
     },
-    backgroundColor: {
-            linearGradient: [0, 0, 500, 500],
-            stops: [
-                [0, 'rgb(255, 255, 255)'],
-                [1, 'rgb(240, 240, 255)']
-            ]
-        },
+    backgroundColor: "transparent",
   },
   legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
-    },
+    layout: "vertical",
+    align: "right",
+    verticalAlign: "middle",
+    color: "white",
+  },
   series: graphDataSet,
   responsive: {
     rules: [
@@ -49,7 +57,6 @@ const chartOptions = ref({
     ],
   },
 });
-
 </script>
 
 <template>
@@ -58,12 +65,10 @@ const chartOptions = ref({
     id="chart-container"
     onchange="update()"
   ></highcharts>
-
 </template>
 
 <style scoped>
 #chart-container {
-  /* background-color: red; */
   min-width: 310px;
   max-width: 1200px;
   padding: 10px;
