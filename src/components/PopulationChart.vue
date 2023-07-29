@@ -17,8 +17,8 @@ const chartOptions = ref({
         fontSize: "14px",
       },
     },
-
     categories: years,
+    lineWidth:1,
   },
   yAxis: {
     title: {
