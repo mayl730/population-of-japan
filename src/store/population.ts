@@ -9,7 +9,6 @@ export const usePopulationStore = defineStore("populations", {
     populationsByPrefectures: {} as { [prefCode: number]: number[] },
     graphDataSet: [] as { name: string; data: number[] }[],
     dataAdded: {} as { [prefCode: number]: boolean },
-    allChecked: false,
   }),
   actions: {
     async initializeData() {
@@ -56,9 +55,6 @@ export const usePopulationStore = defineStore("populations", {
       this.dataAdded[prefCode] = false;
       const prefName = await getPrefNameFromCode(prefCode);
       _.remove(this.graphDataSet, (data) => data.name === prefName);
-    },
-    async toggleAllChecked() {
-      this.allChecked = !this.allChecked;
     },
   },
 });

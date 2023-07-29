@@ -12,9 +12,9 @@
 
 <script setup lang="ts">
 import FilterButton from "./FilterButton.vue";
-import { usePopulationStore } from "@store/population";
+import { useStateStore } from "@store/state";
 
-const { toggleAllChecked } = usePopulationStore();
+const { toggleAllChecked } = useStateStore();
 </script>
 
 <style scoped></style>

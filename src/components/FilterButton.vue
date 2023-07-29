@@ -16,6 +16,7 @@
 import { storeToRefs } from "pinia";
 import { getPrefNameFromCode } from "@utils/get_pref_name_from_code";
 import { usePopulationStore } from "@store/population";
+import { useStateStore } from "@store/state";
 import { ref, watch } from "vue";
 
 const { prefCode, defaultChecked } = defineProps([
@@ -23,7 +24,7 @@ const { prefCode, defaultChecked } = defineProps([
   "defaultChecked",
 ]);
 const { addGraphDataSet, removeGraphDataSet } = usePopulationStore();
-const { allChecked } = storeToRefs(usePopulationStore());
+const { allChecked } = storeToRefs(useStateStore());
 
 let checked = ref(defaultChecked);
 

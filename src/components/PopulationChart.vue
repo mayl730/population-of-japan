@@ -18,7 +18,6 @@ const chartOptions = ref({
       },
     },
     categories: years,
-    lineWidth: 1,
   },
   yAxis: {
     title: {
