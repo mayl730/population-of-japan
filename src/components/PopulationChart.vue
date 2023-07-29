@@ -6,6 +6,9 @@ import { formatPopulation } from "@utils/format_population";
 const { graphDataSet, years } = usePopulationStore();
 
 const chartOptions = ref({
+  accessibility: {
+    enabled: false,
+  },
   title: {
     text: "",
     align: "center",
@@ -13,6 +16,7 @@ const chartOptions = ref({
   xAxis: {
     title: {
       text: "年次",
+      y: 10,
       style: {
         fontSize: "14px",
       },
@@ -22,6 +26,7 @@ const chartOptions = ref({
   yAxis: {
     title: {
       text: "人口",
+      x: -10,
     },
     labels: {
       format: "{value}万人",
