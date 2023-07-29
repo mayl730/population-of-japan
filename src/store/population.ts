@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
+import _ from "lodash";
 import { fetchPopulationDataByPrefCode } from "@utils/fetch_population_by_pref_code.ts";
 import { getPrefNameFromCode } from "@utils/get_pref_name_from_code";
-import _ from "lodash";
+import { useStateStore } from "@store/state";
 
 export const usePopulationStore = defineStore("populations", {
   state: () => ({
@@ -38,6 +39,8 @@ export const usePopulationStore = defineStore("populations", {
       }
     },
     async addGraphDataSet(prefCode: number) {
+      const { toggleIsLoading } = useStateStore();
+      toggleIsLoading(true);
       if (this.dataAdded[prefCode]) {
         return;
       } else {
@@ -49,7 +52,7 @@ export const usePopulationStore = defineStore("populations", {
         name: prefName,
         data: populationArray,
       });
-      console.log(this.graphDataSet);
+      toggleIsLoading(false);
     },
     async removeGraphDataSet(prefCode: number) {
       this.dataAdded[prefCode] = false;

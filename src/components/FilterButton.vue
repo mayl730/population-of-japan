@@ -7,6 +7,7 @@
       :value="prefCode"
       v-model="checked"
       @change="handleCheckboxChange"
+      :disabled="isLoading"
     />
     {{ name }}</label
   >
@@ -25,6 +26,7 @@ const { prefCode, defaultChecked } = defineProps([
 ]);
 const { addGraphDataSet, removeGraphDataSet } = usePopulationStore();
 const { allChecked } = storeToRefs(useStateStore());
+const { isLoading } = storeToRefs(useStateStore());
 
 let checked = ref(defaultChecked);
 

@@ -15,6 +15,8 @@ import FilterButton from "./FilterButton.vue";
 import { useStateStore } from "@store/state";
 
 const { toggleAllChecked } = useStateStore();
+
+
 </script>
 
 <style scoped></style>
