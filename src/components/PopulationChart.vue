@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { usePopulationStore } from "../store/population";
+import { formatPopulation } from "@utils/format_population";
 
 const { graphDataSet, years } = usePopulationStore();
 
@@ -13,16 +14,21 @@ const chartOptions = ref({
     title: {
       text: "年次",
       style: {
-        color: "white",
         fontSize: "14px",
       },
     },
     categories: years,
-    lineWidth:1,
+    lineWidth: 1,
   },
   yAxis: {
     title: {
       text: "人口",
+    },
+    labels: {
+      format: "{value}万人",
+      formatter: function (data: { value: number }) {
+        return formatPopulation(data.value);
+      },
     },
   },
   chart: {
