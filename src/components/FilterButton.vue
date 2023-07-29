@@ -24,7 +24,7 @@ const { prefCode, defaultChecked } = defineProps([
   "prefCode",
   "defaultChecked",
 ]);
-const { addGraphDataSet, removeGraphDataSet } = usePopulationStore();
+const { addGraphDataSet, removeGraphDataSet, removeAllGraphDataSet} = usePopulationStore();
 const { allChecked } = storeToRefs(useStateStore());
 const { isLoading } = storeToRefs(useStateStore());
 
@@ -38,11 +38,12 @@ if (defaultChecked) {
 
 watch(allChecked, () => {
   if(allChecked.value) {
+    console.log('trueeee')
     checked.value = true;
   } else {
     checked.value = false;
+    removeAllGraphDataSet();
   }
-  handleCheckboxChange();
 });
 
 function handleCheckboxChange() {

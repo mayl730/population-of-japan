@@ -7,8 +7,8 @@ export const useStateStore = defineStore("state", {
     isLoading: false,
   }),
   actions: {
-    async toggleAllChecked() {
-      this.allChecked = !this.allChecked;
+    async toggleAllChecked(boolean: boolean) {
+      this.allChecked = boolean;
     },
     async toggleIsLoading(boolean: boolean) {
       this.isLoading = boolean;

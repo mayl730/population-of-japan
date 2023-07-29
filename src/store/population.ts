@@ -54,10 +54,35 @@ export const usePopulationStore = defineStore("populations", {
       });
       toggleIsLoading(false);
     },
+    async addAllGraphDataSet() {
+      // loop through all prefectures (1-47)
+      // If dataAdded is false, add to graphDataSet & set dataAdded to true
+      const { toggleIsLoading } = useStateStore();
+      toggleIsLoading(true);
+      for (let i = 1; i <= 47; i++) {
+        if (!this.dataAdded[i]) {
+          const prefName = await getPrefNameFromCode(i);
+          const populationArray = await this.getPopulations(i);
+          this.graphDataSet.push({
+            name: prefName,
+            data: populationArray,
+          });
+          this.dataAdded[i] = true;
+        }
+      }
+      toggleIsLoading(false);
+    },
     async removeGraphDataSet(prefCode: number) {
       this.dataAdded[prefCode] = false;
       const prefName = await getPrefNameFromCode(prefCode);
       _.remove(this.graphDataSet, (data) => data.name === prefName);
+    },
+    async removeAllGraphDataSet() {
+      console.log(this.graphDataSet);
+      for (const key in this.dataAdded) {
+        console.log(key);
+        this.removeGraphDataSet(Number(key));
+      }
     },
   },
 });
