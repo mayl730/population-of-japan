@@ -31,8 +31,8 @@ import { usePopulationStore } from "@store/population";
 
 let isChecked = ref([] as boolean[]);
 const {
-  addGraphDataSet,
-  removeGraphDataSet,
+  addGraphDataSetByPrefCode: addGraphDataSet,
+  removeGraphDataSetByPrefCode: removeGraphDataSet,
   addAllGraphDataSet,
   removeAllGraphDataSet,
 } = usePopulationStore();

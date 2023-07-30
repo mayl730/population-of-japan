@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import _ from "lodash";
+import _, { get } from "lodash";
 import { fetchPopulationDataByPrefCode } from "@utils/fetch_population_by_pref_code.ts";
 import { getPrefNameFromCode } from "@utils/get_pref_name_from_code";
 import { useStateStore } from "@store/state";
@@ -13,11 +13,14 @@ export const usePopulationStore = defineStore("populations", {
   }),
   actions: {
     async initializeData() {
+      await this.fetchYears();
+      await this.fetchAllData();
+    },
+    async fetchYears() {
       const data = await fetchPopulationDataByPrefCode(1);
       data.forEach((item: { [x: string]: any }) =>
         this.years.push(item["year"])
       );
-      await this.fetchAllData();
     },
     async fetchAllData() {
       type PopulationDataItem = { value: any };
@@ -37,7 +40,7 @@ export const usePopulationStore = defineStore("populations", {
         console.error("Error fetching data:", error);
       }
     },
-    async getPopulations(prefCode: number) {
+    async getPopulationsByPrefCode(prefCode: number) {
       if (prefCode <= 0 || prefCode > 47) {
         return [];
       } else if (this.populationsByPrefectures[prefCode]) {
@@ -51,7 +54,7 @@ export const usePopulationStore = defineStore("populations", {
         return this.populationsByPrefectures[prefCode];
       }
     },
-    async addGraphDataSet(prefCode: number) {
+    async addGraphDataSetByPrefCode(prefCode: number) {
       const { toggleIsLoading } = useStateStore();
       toggleIsLoading(true);
       if (this.dataAdded[prefCode]) {
@@ -60,7 +63,7 @@ export const usePopulationStore = defineStore("populations", {
         this.dataAdded[prefCode] = true;
       }
       const prefName = getPrefNameFromCode(prefCode);
-      const populationArray = await this.getPopulations(prefCode);
+      const populationArray = await this.getPopulationsByPrefCode(prefCode);
       this.graphDataSet.push({
         name: prefName,
         data: populationArray,
@@ -74,7 +77,7 @@ export const usePopulationStore = defineStore("populations", {
       const addGraphPromises: Promise<void>[] = [];
   
       for (let prefCode = 1; prefCode <= 47; prefCode++) {
-        addGraphPromises.push(this.addGraphDataSet(prefCode));
+        addGraphPromises.push(this.addGraphDataSetByPrefCode(prefCode));
       }
       try {
         await Promise.all(addGraphPromises);
@@ -84,14 +87,14 @@ export const usePopulationStore = defineStore("populations", {
         toggleIsLoading(false);
       }
     },
-    removeGraphDataSet(prefCode: number) {
+    removeGraphDataSetByPrefCode(prefCode: number) {
       this.dataAdded[prefCode] = false;
       const prefName = getPrefNameFromCode(prefCode);
       _.remove(this.graphDataSet, (data) => data.name === prefName);
     },
     removeAllGraphDataSet() {
       for (const prefCode in this.dataAdded) {
-        this.removeGraphDataSet(Number(prefCode));
+        this.removeGraphDataSetByPrefCode(Number(prefCode));
       }
     },
   },
