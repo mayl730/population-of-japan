@@ -1,12 +1,16 @@
 <template>
   <div>
-    <button @click="selectAll()" :disabled="isLoading">Select All</button>
-    <button @click="clearAll()" :disabled="isLoading">Clear All</button>
+    <button @click="selectAll()" :disabled="isLoading" class="round-button select-all">
+      全て選択する
+    </button>
+    <button @click="clearAll()" :disabled="isLoading" class="round-button clear">
+      クリア
+    </button>
 
     <template v-for="prefCode in 47" :key="prefCode">
       <label
         :for="prefCode.toString()"
-        class="filter-box"
+        class="filter-label"
         :class="{ active: isChecked[prefCode - 1] }"
       >
         <input
