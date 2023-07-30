@@ -13,17 +13,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="temp-container">
-    <PrefFilters />
+  <div class="container">
+    <div class="col-6"><PrefFilters /></div>
     <PopulationChart
       v-if="Object.keys(populationsByPrefectures).length !== 0"
     />
   </div>
 </template>
 
-<style scoped>
-/* TODO: remove hard code */
-.temp-container {
-  height: 1000px;
-}
-</style>
+<style scoped></style>

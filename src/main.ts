@@ -6,6 +6,7 @@ import darkUnica from 'highcharts/themes/dark-unica';
 
 import '@assets/css/reset.css'
 import '@assets/css/style.css'
+import '@assets/css/grid.css'
 import App from './App.vue'
 
 const store = createPinia()
