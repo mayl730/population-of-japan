@@ -1,10 +1,10 @@
 <template>
-  <div class="popup">
-    <div class="pref-filters center">
-      <div class="mobile-filter-header">
-        <p class="area-label">Filter (1 selected)</p>
-        <button @click="">Close</button>
-      </div>
+  <div class="popup" :class="{ active: mobilePopupIsOpened }">
+    <div class="mobile-filter-header" :class="{ active: mobilePopupIsOpened }">
+      <p class="area-label">Filter (1 selected)</p>
+      <button @click="toggleMobilePopup(false)">Close</button>
+    </div>
+    <div class="pref-filters center" :class="{ active: mobilePopupIsOpened }">
       <div class="row">
         <p class="area-label">都道府県</p>
         <button @click="selectAll()" :disabled="isLoading" class="round-button">
@@ -52,8 +52,8 @@ const {
   addAllGraphDataSet,
   removeAllGraphDataSet,
 } = usePopulationStore();
-
-const { isLoading } = storeToRefs(useStateStore());
+const { toggleMobilePopup } = useStateStore();
+const { isLoading, mobilePopupIsOpened } = storeToRefs(useStateStore());
 
 onMounted(async () => {
   for (let prefCode = 1; prefCode <= 47; prefCode++) {

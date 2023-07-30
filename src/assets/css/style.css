@@ -42,6 +42,18 @@ h1 {
   }
 }
 
+.material-symbols-outlined {
+  position: relative;
+  display: inline-block;
+  top: 2px;
+}
+
+.button-text {
+  position: relative;
+  display: inline-block;
+  top: -6px;
+}
+
 .pref-filters {
   display: block;
   margin-bottom: 30px;
@@ -72,7 +84,6 @@ input[type="checkbox"] {
   top: 2px;
 }
 
-
 /* Popup */
 
 .popup.active {
@@ -100,9 +111,19 @@ input[type="checkbox"] {
   font-size: 60px;
 }
 
-.content {
+.pref-filters.active {
   position: relative;
+  overflow: auto;
   top: 10%;
   width: 100%;
   margin-top: 0px;
+}
+
+#mobile-filter {
+  display: none;
+}
+@media only screen and (max-width: 720px) {
+  #mobile-filter {
+    display: block;
+  }
 }
