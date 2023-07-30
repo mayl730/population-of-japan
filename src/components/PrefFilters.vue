@@ -4,8 +4,8 @@
     :class="{ active: mobilePopupIsOpened, display: mobilePopupIsOpened }"
   >
     <div class="mobile-filter-header" :class="{ active: mobilePopupIsOpened }">
-      <p class="area-label">Filter (1 selected)</p>
-      <button @click="toggleMobilePopup(false)">Close</button>
+      <p class="area-label">フィルター({{ graphDataSet.length }} 件)</p>
+      <button @click="toggleMobilePopup(false)">X</button>
     </div>
     <div class="pref-filters center" :class="{ active: mobilePopupIsOpened }">
       <div class="row">
@@ -55,6 +55,7 @@ const {
   addAllGraphDataSet,
   removeAllGraphDataSet,
 } = usePopulationStore();
+const { graphDataSet } = storeToRefs(usePopulationStore());
 const { toggleMobilePopup } = useStateStore();
 const { isLoading, mobilePopupIsOpened } = storeToRefs(useStateStore());
 
