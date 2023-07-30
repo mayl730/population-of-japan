@@ -4,7 +4,11 @@
     <button @click="clearAll()" :disabled="isLoading">Clear All</button>
 
     <template v-for="prefCode in 47" :key="prefCode">
-      <label :for="prefCode.toString()">
+      <label
+        :for="prefCode.toString()"
+        class="filter-box"
+        :class="{ active: isChecked[prefCode - 1] }"
+      >
         <input
           type="checkbox"
           :id="prefCode.toString()"
