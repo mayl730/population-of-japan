@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button @click="toggleAllCheckbox(true)">Select All</button>
-    <button @click="toggleAllCheckbox(false)">Clear All</button>
+    <button @click="toggleAllCheckboxes(true)">Select All</button>
+    <button @click="toggleAllCheckboxes(false)">Clear All</button>
 
     <template v-for="prefCode in 47" :key="prefCode">
       <label :for="prefCode.toString">
@@ -41,7 +41,7 @@ function toggleCheckbox(index: number) {
   isChecked.value[index] = !isChecked.value[index];
 }
 
-function toggleAllCheckbox(boolean: boolean) {
+function toggleAllCheckboxes(boolean: boolean) {
   for (let i = 0; i < isChecked.value.length; i++) {
     isChecked.value[i] = boolean;
   }
