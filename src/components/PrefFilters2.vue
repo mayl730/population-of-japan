@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button @click="selectAll()">Select All</button>
-    <button @click="clearAll()">Clear All</button>
+    <button @click="selectAll()" :disabled="isLoading">Select All</button>
+    <button @click="clearAll()" :disabled="isLoading">Clear All</button>
 
     <template v-for="prefCode in 47" :key="prefCode">
       <label :for="prefCode.toString">
@@ -11,6 +11,7 @@
           :value="prefCode"
           :checked="isChecked[prefCode - 1]"
           @change="toggleCheckbox(prefCode)"
+          :disabled="isLoading"
         />
         {{ getPrefNameFromCode(prefCode) }}</label
       >
@@ -21,12 +22,22 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from "vue";
+import { storeToRefs } from "pinia";
+
 import { useStateStore } from "@store/state";
 import { getPrefNameFromCode } from "@utils/get_pref_name_from_code";
 import { usePopulationStore } from "@store/population";
-import { onMounted, ref } from "vue";
 
 let isChecked = ref([] as boolean[]);
+const {
+  addGraphDataSet,
+  removeGraphDataSet,
+  addAllGraphDataSet,
+  removeAllGraphDataSet,
+} = usePopulationStore();
+
+const { isLoading } = storeToRefs(useStateStore());
 
 onMounted(async () => {
   for (let prefCode = 1; prefCode <= 47; prefCode++) {
@@ -37,13 +48,6 @@ onMounted(async () => {
     }
   }
 });
-
-const {
-  addGraphDataSet,
-  removeGraphDataSet,
-  addAllGraphDataSet,
-  removeAllGraphDataSet,
-} = usePopulationStore();
 
 function toggleCheckbox(prefCode: number) {
   const index = prefCode - 1;
@@ -60,7 +64,7 @@ async function selectAll() {
   await addAllGraphDataSet();
 }
 
-async function clearAll() {
+function clearAll() {
   toggleAllCheckboxes(false);
   removeAllGraphDataSet();
 }
