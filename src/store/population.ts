@@ -14,6 +14,11 @@ export const usePopulationStore = defineStore("populations", {
   actions: {
     async initializeData() {
       console.log("initializeData");
+      // for (let i = 1; i <= 47; i++) {
+      //   const data = await fetchPopulationDataByPrefCode(i);
+      //   const populationArray = data.map((item: { value: any }) => item.value);
+      //   this.populationsByPrefectures[i] = populationArray;
+      // }
     },
     async getYears() {
       const data = await fetchPopulationDataByPrefCode(1);
@@ -27,14 +32,12 @@ export const usePopulationStore = defineStore("populations", {
         return [];
       } else if (this.populationsByPrefectures[prefCode]) {
         console.log("cache hit");
-        // console.log(this.populationsByPrefectures);
         return this.populationsByPrefectures[prefCode];
       } else {
         console.log("cache miss");
         const data = await fetchPopulationDataByPrefCode(prefCode);
         const populationArray = data.map((item: { value: any }) => item.value);
         this.populationsByPrefectures[prefCode] = populationArray;
-        // console.log(this.populationsByPrefectures);
         return this.populationsByPrefectures[prefCode];
       }
     },
@@ -46,7 +49,7 @@ export const usePopulationStore = defineStore("populations", {
       } else {
         this.dataAdded[prefCode] = true;
       }
-      const prefName = await getPrefNameFromCode(prefCode);
+      const prefName = getPrefNameFromCode(prefCode);
       const populationArray = await this.getPopulations(prefCode);
       this.graphDataSet.push({
         name: prefName,
@@ -55,33 +58,44 @@ export const usePopulationStore = defineStore("populations", {
       toggleIsLoading(false);
     },
     async addAllGraphDataSet() {
-      // loop through all prefectures (1-47)
-      // If dataAdded is false, add to graphDataSet & set dataAdded to true
       const { toggleIsLoading } = useStateStore();
       toggleIsLoading(true);
+
+      const promises: Array<{
+        i: number;
+        prefName: string;
+        populationPromise: Promise<number[]>;
+      }> = [];
+
       for (let i = 1; i <= 47; i++) {
         if (!this.dataAdded[i]) {
-          const prefName = await getPrefNameFromCode(i);
-          const populationArray = await this.getPopulations(i);
-          this.graphDataSet.push({
-            name: prefName,
-            data: populationArray,
-          });
-          this.dataAdded[i] = true;
+          const prefName = getPrefNameFromCode(i);
+          const populationPromise = this.getPopulations(i);
+          promises.push({ i, prefName, populationPromise });
         }
       }
+      const results = await Promise.all(
+        promises.map(({ populationPromise }) => populationPromise)
+      );
+      results.forEach((populationArray, index) => {
+        const { i, prefName } = promises[index];
+        this.graphDataSet.push({
+          name: prefName,
+          data: populationArray,
+        });
+        this.dataAdded[i] = true;
+      });
+
       toggleIsLoading(false);
     },
-    async removeGraphDataSet(prefCode: number) {
+    removeGraphDataSet(prefCode: number) {
       this.dataAdded[prefCode] = false;
-      const prefName = await getPrefNameFromCode(prefCode);
+      const prefName = getPrefNameFromCode(prefCode);
       _.remove(this.graphDataSet, (data) => data.name === prefName);
     },
-    async removeAllGraphDataSet() {
-      console.log(this.graphDataSet);
-      for (const key in this.dataAdded) {
-        console.log(key);
-        this.removeGraphDataSet(Number(key));
+    removeAllGraphDataSet() {
+      for (const prefCode in this.dataAdded) {
+        this.removeGraphDataSet(Number(prefCode));
       }
     },
   },
