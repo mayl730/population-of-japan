@@ -10,7 +10,7 @@
           :id="prefCode.toString()"
           :value="prefCode"
           :checked="isChecked[prefCode - 1]"
-          @change="toggleCheckbox(prefCode - 1)"
+          @change="toggleCheckbox(prefCode)"
         />
         {{ getPrefNameFromCode(prefCode) }}</label
       >
@@ -34,11 +34,16 @@ onMounted(async () => {
   }
 });
 
-const { toggleAllChecked, allChecked } = useStateStore();
-const { addAllGraphDataSet, removeAllGraphDataSet } = usePopulationStore();
+const { addGraphDataSet, removeGraphDataSet } = usePopulationStore();
 
-function toggleCheckbox(index: number) {
+function toggleCheckbox(prefCode: number) {
+  const index = prefCode - 1;
   isChecked.value[index] = !isChecked.value[index];
+  if (isChecked.value[index]) {
+    addGraphDataSet(prefCode);
+  } else {
+    removeGraphDataSet(prefCode);
+  }
 }
 
 function toggleAllCheckboxes(boolean: boolean) {
@@ -46,7 +51,6 @@ function toggleAllCheckboxes(boolean: boolean) {
     isChecked.value[i] = boolean;
   }
 }
-
 </script>
 
 <style scoped></style>
