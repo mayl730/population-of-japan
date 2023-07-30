@@ -1,5 +1,8 @@
 <template>
-  <div class="popup" :class="{ active: mobilePopupIsOpened }">
+  <div
+    class="popup hidden"
+    :class="{ active: mobilePopupIsOpened, display: mobilePopupIsOpened }"
+  >
     <div class="mobile-filter-header" :class="{ active: mobilePopupIsOpened }">
       <p class="area-label">Filter (1 selected)</p>
       <button @click="toggleMobilePopup(false)">Close</button>

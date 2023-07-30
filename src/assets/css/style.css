@@ -122,8 +122,15 @@ input[type="checkbox"] {
 #mobile-filter {
   display: none;
 }
+
 @media only screen and (max-width: 720px) {
   #mobile-filter {
     display: block;
+  }
+  .display {
+    display: block;
+  }
+  .hidden {
+    display: none;
   }
 }
