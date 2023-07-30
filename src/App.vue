@@ -3,7 +3,6 @@ import { usePopulationStore } from "./store/population";
 import { onMounted } from "vue";
 
 import PopulationChart from "@components/PopulationChart.vue";
-import PrefFilters from "@components/PrefFilters.vue";
 import PrefFilters2 from "@components/PrefFilters2.vue";
 
 const { initializeData, getPopulations, getYears, populationsByPrefectures } =
