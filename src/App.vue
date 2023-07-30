@@ -25,9 +25,7 @@ import PopulationChart from "@components/PopulationChart.vue";
 import PrefFilters from "@components/PrefFilters.vue";
 
 const { initializeData, populationsByPrefectures } = usePopulationStore();
-
 const { toggleMobilePopup } = useStateStore();
-// const { mobilePopupIsOpened } = storeToRefs(useStateStore());
 
 onMounted(async () => {
   initializeData();
