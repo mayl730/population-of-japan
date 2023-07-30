@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button>Select All</button>
-    <button>Clear All</button>
+    <button @click="toggleAllCheckbox(true)">Select All</button>
+    <button @click="toggleAllCheckbox(false)">Clear All</button>
 
     <template v-for="prefCode in 47" :key="prefCode">
       <label :for="prefCode.toString">
@@ -28,20 +28,24 @@ import { onMounted, ref } from "vue";
 
 let isChecked = ref([] as boolean[]);
 
+onMounted(async () => {
+  for (let i = 1; i <= 47; i++) {
+    isChecked.value.push(false);
+  }
+});
+
 const { toggleAllChecked, allChecked } = useStateStore();
 const { addAllGraphDataSet, removeAllGraphDataSet } = usePopulationStore();
 
 function toggleCheckbox(index: number) {
-    isChecked.value[index] = !isChecked.value[index];
-};
+  isChecked.value[index] = !isChecked.value[index];
+}
 
-onMounted(async () => {
-    for (let i = 1; i <= 47; i++) {
-        isChecked.value.push(false);
-    } 
-});
-
-
+function toggleAllCheckbox(boolean: boolean) {
+  for (let i = 0; i < isChecked.value.length; i++) {
+    isChecked.value[i] = boolean;
+  }
+}
 
 </script>
 
