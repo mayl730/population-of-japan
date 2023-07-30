@@ -10,23 +10,32 @@ export const usePopulationStore = defineStore("populations", {
     populationsByPrefectures: {} as { [prefCode: number]: number[] },
     graphDataSet: [] as { name: string; data: number[] }[],
     dataAdded: {} as { [prefCode: number]: boolean },
-    selected: [],
   }),
   actions: {
     async initializeData() {
-      console.log("initializeData");
-      // for (let i = 1; i <= 47; i++) {
-      //   const data = await fetchPopulationDataByPrefCode(i);
-      //   const populationArray = data.map((item: { value: any }) => item.value);
-      //   this.populationsByPrefectures[i] = populationArray;
-      // }
-    },
-    async getYears() {
       const data = await fetchPopulationDataByPrefCode(1);
       data.forEach((item: { [x: string]: any }) =>
         this.years.push(item["year"])
       );
-      return this.years;
+      await this.fetchAllData();
+    },
+    async fetchAllData() {
+      type PopulationDataItem = { value: any };
+      const fetchPromises: Promise<PopulationDataItem[]>[] = [];
+
+      for (let prefCode = 1; prefCode <= 47; prefCode++) {
+        fetchPromises.push(fetchPopulationDataByPrefCode(prefCode));
+      }
+      try {
+        const fetchedData = await Promise.all(fetchPromises);
+        for (let i = 0; i < fetchedData.length; i++) {
+          const data = fetchedData[i];
+          const populationArray = data.map((item) => item.value);
+          this.populationsByPrefectures[i + 1] = populationArray;
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     },
     async getPopulations(prefCode: number) {
       if (prefCode <= 0 || prefCode > 47) {
@@ -61,33 +70,19 @@ export const usePopulationStore = defineStore("populations", {
     async addAllGraphDataSet() {
       const { toggleIsLoading } = useStateStore();
       toggleIsLoading(true);
-
-      const promises: Array<{
-        i: number;
-        prefName: string;
-        populationPromise: Promise<number[]>;
-      }> = [];
-
-      for (let i = 1; i <= 47; i++) {
-        if (!this.dataAdded[i]) {
-          const prefName = getPrefNameFromCode(i);
-          const populationPromise = this.getPopulations(i);
-          promises.push({ i, prefName, populationPromise });
-        }
+    
+      const addGraphPromises: Promise<void>[] = [];
+  
+      for (let prefCode = 1; prefCode <= 47; prefCode++) {
+        addGraphPromises.push(this.addGraphDataSet(prefCode));
       }
-      const results = await Promise.all(
-        promises.map(({ populationPromise }) => populationPromise)
-      );
-      results.forEach((populationArray, index) => {
-        const { i, prefName } = promises[index];
-        this.graphDataSet.push({
-          name: prefName,
-          data: populationArray,
-        });
-        this.dataAdded[i] = true;
-      });
-
-      toggleIsLoading(false);
+      try {
+        await Promise.all(addGraphPromises);
+      } catch (error) {
+        console.error('Error adding graph data sets:', error);
+      } finally {
+        toggleIsLoading(false);
+      }
     },
     removeGraphDataSet(prefCode: number) {
       this.dataAdded[prefCode] = false;
