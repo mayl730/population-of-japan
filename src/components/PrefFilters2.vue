@@ -29,8 +29,12 @@ import { onMounted, ref } from "vue";
 let isChecked = ref([] as boolean[]);
 
 onMounted(async () => {
-  for (let i = 1; i <= 47; i++) {
-    isChecked.value.push(false);
+  for (let prefCode = 1; prefCode <= 47; prefCode++) {
+    if (prefCode === 13) {
+        toggleCheckbox(13);
+    } else {
+        isChecked.value.push(false);
+    }
   }
 });
 
