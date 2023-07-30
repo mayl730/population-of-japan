@@ -1,9 +1,9 @@
 <template>
   <div>
-    <button @click="selectAll()" :disabled="isLoading" class="round-button select-all">
+    <button @click="selectAll()" :disabled="isLoading" class="round-button">
       全て選択する
     </button>
-    <button @click="clearAll()" :disabled="isLoading" class="round-button clear">
+    <button @click="clearAll()" :disabled="isLoading" class="round-button">
       クリア
     </button>
 

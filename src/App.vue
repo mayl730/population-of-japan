@@ -14,6 +14,7 @@ onMounted(async () => {
 
 <template>
   <div class="container">
+    <h1>人口推移グラフ（都道府県別）</h1>
     <PrefFilters />
     <PopulationChart
       v-if="Object.keys(populationsByPrefectures).length !== 0"
@@ -21,4 +22,6 @@ onMounted(async () => {
   </div>
 </template>
 
-<style scoped></style>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&family=Montserrat:wght@700&display=swap");
+</style>
