@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button @click="toggleAllCheckboxes(true)">Select All</button>
-    <button @click="toggleAllCheckboxes(false)">Clear All</button>
+    <button @click="selectAll()">Select All</button>
+    <button @click="clearAll()">Clear All</button>
 
     <template v-for="prefCode in 47" :key="prefCode">
       <label :for="prefCode.toString">
@@ -31,14 +31,19 @@ let isChecked = ref([] as boolean[]);
 onMounted(async () => {
   for (let prefCode = 1; prefCode <= 47; prefCode++) {
     if (prefCode === 13) {
-        toggleCheckbox(13);
+      toggleCheckbox(13);
     } else {
-        isChecked.value.push(false);
+      isChecked.value.push(false);
     }
   }
 });
 
-const { addGraphDataSet, removeGraphDataSet } = usePopulationStore();
+const {
+  addGraphDataSet,
+  removeGraphDataSet,
+  addAllGraphDataSet,
+  removeAllGraphDataSet,
+} = usePopulationStore();
 
 function toggleCheckbox(prefCode: number) {
   const index = prefCode - 1;
@@ -48,6 +53,16 @@ function toggleCheckbox(prefCode: number) {
   } else {
     removeGraphDataSet(prefCode);
   }
+}
+
+async function selectAll() {
+  toggleAllCheckboxes(true);
+  await addAllGraphDataSet();
+}
+
+async function clearAll() {
+  toggleAllCheckboxes(false);
+  removeAllGraphDataSet();
 }
 
 function toggleAllCheckboxes(boolean: boolean) {
