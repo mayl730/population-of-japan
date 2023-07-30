@@ -5,7 +5,9 @@
     <div id="mobile-filter" class="center">
       <button @click="toggleMobilePopup(true)" class="round-button">
         <span class="material-symbols-outlined"> filter_alt </span>
-        <span class="button-text">都道府県フィルター({{graphDataSet.length}}件)</span>
+        <span class="button-text"
+          >都道府県フィルター({{ graphDataSet.length }}件)</span
+        >
       </button>
     </div>
 
@@ -19,11 +21,11 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
+import { storeToRefs } from "pinia";
 import { usePopulationStore } from "@store/population";
 import { useStateStore } from "@store/state";
 import PopulationChart from "@components/PopulationChart.vue";
 import PrefFilters from "@components/PrefFilters.vue";
-import { storeToRefs } from "pinia";
 
 const { initializeData, populationsByPrefectures } = usePopulationStore();
 const { graphDataSet } = storeToRefs(usePopulationStore());

@@ -129,6 +129,13 @@ input[type="checkbox"] {
   display: none;
 }
 
+/* Chart */
+#chart-container {
+  min-width: 310px;
+  padding: 10px;
+}
+
+/* Mobile */
 @media only screen and (max-width: 720px) {
   #mobile-filter {
     display: block;

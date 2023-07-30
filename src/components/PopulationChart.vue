@@ -37,10 +37,6 @@ const chartOptions = ref({
   },
   chart: {
     type: "spline",
-    // scrollablePlotArea: {
-    //   minWidth: 600,
-    //   scrollPositionX: 1,
-    // },
     backgroundColor: "transparent",
   },
   legend: {
@@ -66,8 +62,6 @@ const chartOptions = ref({
           yAxis: {
             labels: {
               align: "left",
-              // x: 0,
-              // y: 0,
             },
             title: {
               text: "",
@@ -86,17 +80,13 @@ const chartOptions = ref({
 </script>
 
 <template>
-  <highcharts
-    :options="chartOptions"
-    id="chart-container"
-    onchange="update()"
-  ></highcharts>
+  <div class="container center">
+    <highcharts
+      :options="chartOptions"
+      id="chart-container"
+      onchange="update()"
+    ></highcharts>
+  </div>
 </template>
 
-<style scoped>
-#chart-container {
-  min-width: 310px;
-  max-width: 1200px;
-  padding: 10px;
-}
-</style>
+<style scoped></style>
