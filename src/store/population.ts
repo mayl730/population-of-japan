@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import _, { get } from "lodash";
+import _ from "lodash";
 import { fetchPopulationDataByPrefCode } from "@utils/fetch_population_by_pref_code.ts";
 import { getPrefNameFromCode } from "@utils/get_pref_name_from_code";
 import { useStateStore } from "@store/state";

@@ -1,29 +1,39 @@
 <template>
-  <div>
-    <button @click="selectAll()" :disabled="isLoading" class="round-button">
-      全て選択する
-    </button>
-    <button @click="clearAll()" :disabled="isLoading" class="round-button">
-      クリア
-    </button>
+  <div class="popup">
+    <div class="pref-filters center">
+      <div class="mobile-filter-header">
+        <p class="area-label">Filter (1 selected)</p>
+        <button @click="">Close</button>
+      </div>
+      <div class="row">
+        <p class="area-label">都道府県</p>
+        <button @click="selectAll()" :disabled="isLoading" class="round-button">
+          全て選択する
+        </button>
+        <button @click="clearAll()" :disabled="isLoading" class="round-button">
+          クリア
+        </button>
+      </div>
 
-    <template v-for="prefCode in 47" :key="prefCode">
-      <label
-        :for="prefCode.toString()"
-        class="filter-label"
-        :class="{ active: isChecked[prefCode - 1] }"
-      >
-        <input
-          type="checkbox"
-          :id="prefCode.toString()"
-          :value="prefCode"
-          :checked="isChecked[prefCode - 1]"
-          @change="toggleCheckbox(prefCode)"
-          :disabled="isLoading"
-        />
-        {{ getPrefNameFromCode(prefCode) }}</label
-      >
-    </template>
+      <br />
+      <template v-for="prefCode in 47" :key="prefCode">
+        <label
+          :for="prefCode.toString()"
+          class="filter-label"
+          :class="{ active: isChecked[prefCode - 1] }"
+        >
+          <input
+            type="checkbox"
+            :id="prefCode.toString()"
+            :value="prefCode"
+            :checked="isChecked[prefCode - 1]"
+            @change="toggleCheckbox(prefCode)"
+            :disabled="isLoading"
+          />
+          {{ getPrefNameFromCode(prefCode) }}</label
+        >
+      </template>
+    </div>
   </div>
 </template>
 
