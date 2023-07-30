@@ -37,10 +37,10 @@ const chartOptions = ref({
   },
   chart: {
     type: "spline",
-    scrollablePlotArea: {
-      minWidth: 600,
-      scrollPositionX: 1,
-    },
+    // scrollablePlotArea: {
+    //   minWidth: 600,
+    //   scrollPositionX: 1,
+    // },
     backgroundColor: "transparent",
   },
   legend: {
@@ -61,6 +61,22 @@ const chartOptions = ref({
             align: "center",
             verticalAlign: "bottom",
             layout: "horizontal",
+            maxHeight: 65,
+          },
+          yAxis: {
+            labels: {
+              align: "left",
+              // x: 0,
+              // y: 0,
+            },
+            title: {
+              text: "",
+            },
+          },
+          xAxis: {
+            title: {
+              text: "",
+            },
           },
         },
       },

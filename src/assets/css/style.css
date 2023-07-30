@@ -127,10 +127,10 @@ input[type="checkbox"] {
   #mobile-filter {
     display: block;
   }
-  .display {
-    display: block;
-  }
   .hidden {
     display: none;
+  }
+  .display {
+    display: block;
   }
 }
