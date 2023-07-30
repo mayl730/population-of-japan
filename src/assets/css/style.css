@@ -36,10 +36,6 @@ h1 {
   cursor: pointer;
   border-radius: 20px;
   color: #000;
-  &:hover {
-    background-color: #ffaa02;
-    cursor: pointer;
-  }
 }
 
 .material-symbols-outlined {
@@ -69,11 +65,6 @@ h1 {
   color: #fff;
   background-color: #4f5254;
   border-radius: 20px;
-
-  &:hover {
-    background-color: #ffaa02;
-    cursor: pointer;
-  }
 }
 .filter-label.active {
   background-color: #1877f2;
@@ -147,5 +138,16 @@ input[type="checkbox"] {
   }
   .display {
     display: block;
+  }
+}
+
+@media (hover: hover) {
+  .filter-label:hover {
+    background-color: #ffaa02;
+    cursor: pointer;
+  }
+  .round-button:hover {
+    background-color: #ffaa02;
+    cursor: pointer;
   }
 }
