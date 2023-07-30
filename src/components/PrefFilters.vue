@@ -16,8 +16,6 @@
         {{ getPrefNameFromCode(prefCode) }}</label
       >
     </template>
-
-    {{ isChecked }}
   </div>
 </template>
 

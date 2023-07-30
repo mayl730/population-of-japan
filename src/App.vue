@@ -14,7 +14,7 @@ onMounted(async () => {
 
 <template>
   <div class="container">
-    <div class="col-6"><PrefFilters /></div>
+    <PrefFilters />
     <PopulationChart
       v-if="Object.keys(populationsByPrefectures).length !== 0"
     />
