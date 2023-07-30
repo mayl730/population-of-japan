@@ -10,6 +10,7 @@ export const usePopulationStore = defineStore("populations", {
     populationsByPrefectures: {} as { [prefCode: number]: number[] },
     graphDataSet: [] as { name: string; data: number[] }[],
     dataAdded: {} as { [prefCode: number]: boolean },
+    selected: [],
   }),
   actions: {
     async initializeData() {

@@ -3,8 +3,8 @@ import { usePopulationStore } from "./store/population";
 import { onMounted } from "vue";
 
 import PopulationChart from "@components/PopulationChart.vue";
-// import FilterButton from "@components/FilterButton.vue";
 import PrefFilters from "@components/PrefFilters.vue";
+import PrefFilters2 from "@components/PrefFilters2.vue";
 
 const { initializeData, getPopulations, getYears, populationsByPrefectures } =
   usePopulationStore();
@@ -22,7 +22,10 @@ onMounted(async () => {
     <PopulationChart
       v-if="Object.keys(populationsByPrefectures).length !== 0"
     />
+
+    <PrefFilters2 />
   </div>
+
 </template>
 
 <style scoped>
