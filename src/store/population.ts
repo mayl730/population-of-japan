@@ -15,6 +15,9 @@ export const usePopulationStore = defineStore("populations", {
     checkboxCount(state) {
       return state.graphDataSet.length;
     },
+    isDataMounted(state) {
+      return Object.keys(state.populationsByPrefectures).length !== 0;
+    },
   },
   actions: {
     async initializeData() {

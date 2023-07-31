@@ -13,9 +13,7 @@
 
     <PrefFilters />
 
-    <PopulationChart
-      v-if="Object.keys(populationsByPrefectures).length !== 0"
-    />
+    <PopulationChart v-if="isDataMounted" />
   </div>
 </template>
 
@@ -27,8 +25,8 @@ import { useStateStore } from "@store/state";
 import PopulationChart from "@components/PopulationChart.vue";
 import PrefFilters from "@components/PrefFilters.vue";
 
-const { initializeData, populationsByPrefectures } = usePopulationStore();
-const { checkboxCount } = storeToRefs(usePopulationStore());
+const { initializeData } = usePopulationStore();
+const { checkboxCount, isDataMounted } = storeToRefs(usePopulationStore());
 const { toggleMobilePopup } = useStateStore();
 
 onMounted(async () => {
