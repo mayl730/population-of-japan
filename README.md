@@ -1,14 +1,24 @@
 [日本語版 README はこちら](https://github.com/gfngfn/SATySFi/blob/master/README-ja.md)
 
 
-# 3D Text and Shape by Three.js
+# Population of Japan by prefecture
 
-A Three JS project on playing with text and shapes.
+A Vue3 + Vite project on showing the population trend in Japan.
+You can select the prefecture you like an learn more about Japan
 
 ![image for the website](./thumbnail.jpg)
 
 You can check the live site here:<br>
 [https://population-of-japan.vercel.app/](https://population-of-japan.vercel.app/)
+
+## Tech Stack
+- [x] [VueJS (Vue3)](https://vuejs.org/)
+- [x] [Vite](https://github.com/vitejs/vite)
+- [x] [Pinia](https://pinia.vuejs.org/) for state management
+- [x] [RESAS API](https://vuejs.org/) for getting population data in Japan
+- [x] [Highcharts](https://www.highcharts.com/) for interactive graph
+- [x] [TypeScript](https://www.typescriptlang.org/) and [Vue tsc](https://github.com/johnsoncodehk/volar/tree/master/vue-language-tools/vue-tsc) for static analysis
+- [x] [ESLint](https://eslint.vuejs.org/) for syntax checking and code styling
 
 ## Getting Started
 
@@ -17,6 +27,9 @@ Follow these steps to set up and run the project locally.
 ### Prerequisites
 
 - Node.js (https://nodejs.org) should be installed on your machine.
+
+### Recommended IDE Setup
+- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
 ### Installation
 
@@ -30,6 +43,12 @@ git clone https://github.com/mayl730/population-of-japan
 
 ```bash
 npm install
+```
+
+3. Setup your local environment file and name it as ```.env```.
+You can check the template of env here: [environment file template](https://github.com/mayl730/population-of-japan/.env.template)
+```env
+VITE_API_KEY=XXXXXXXXXXXXXXXXXXXXXX
 ```
 
 3. Running the Development Server
