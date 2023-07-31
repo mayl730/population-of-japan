@@ -50,9 +50,13 @@ git clone https://github.com/mayl730/population-of-japan
 npm install
 ```
 
-3. RESAS でサインアップして、API キーを取得してください： [RESAS API](https://opendata.resas-portal.go.jp/)
+3. RESAS でサインアップして、API キーを取得してください。
 
-4. 環境ファイルを設定し、`.env`という名前で保存してください。 [環境ファイルのテンプレートをご利用ください](https://github.com/mayl730/population-of-japan/blob/main/.env.template)
+[RESAS API](https://opendata.resas-portal.go.jp/)
+
+4. 環境ファイルを設定し、`.env`という名前で保存してください。
+
+ [環境ファイルのテンプレートをご利用ください](https://github.com/mayl730/population-of-japan/blob/main/.env.template)
 
 環境設定ファイルにご自身の API キーを追加してください。
 
@@ -60,7 +64,7 @@ npm install
 VITE_API_KEY=XXXXXXXXXXXXXXXXXXXXXX
 ```
 
-5. 発用サーバーの起動:
+5. 開発用サーバーの起動:
 
 以下のコマンドを使用して、開発用サーバーを起動してください。
 
