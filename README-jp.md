@@ -1,4 +1,4 @@
-[English README](https://github.com/mayl730/population-of-japan/blob/main/README-jp.md)
+[English README](https://github.com/mayl730/population-of-japan/)
 
 # 日本の都道府県別人口グラフ
 
