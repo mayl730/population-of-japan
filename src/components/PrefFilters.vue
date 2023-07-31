@@ -55,17 +55,18 @@ const {
   addAllGraphDataSet,
   removeAllGraphDataSet,
 } = usePopulationStore();
-const { checkboxCount } = storeToRefs(usePopulationStore());
 const { toggleMobilePopup } = useStateStore();
+const { checkboxCount } = storeToRefs(usePopulationStore());
 const { isLoading, mobilePopupIsOpened } = storeToRefs(useStateStore());
+
 let isChecked = ref([] as boolean[]);
 
 onMounted(async () => {
   for (let prefCode = 1; prefCode <= 47; prefCode++) {
     if (prefCode === 13) {
-      toggleCheckbox(13);
+      await toggleCheckbox(13);
     } else if (prefCode === 27) {
-      toggleCheckbox(27);
+      await toggleCheckbox(27);
     } else {
       isChecked.value.push(false);
     }
