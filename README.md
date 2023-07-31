@@ -1,4 +1,4 @@
-[日本語版 README はこちら](https://github.com/mayl730/population-of-japan/blob/master/README-ja.md)
+[日本語版 README はこちら](https://github.com/mayl730/population-of-japan/blob/main/README-jp.md)
 
 # Population of Japan by prefecture
 
@@ -47,10 +47,7 @@ npm install
 
 3. Sign up and get your API key at here: [RESAS API](https://opendata.resas-portal.go.jp/)
 
-4. Setup your environment file and name it as ```.env```.
-Template of ```.env```:
-
-[environment file template](https://github.com/mayl730/population-of-japan/.env.template)
+4. Setup your environment file and name it as ```.env```. [env file template](https://github.com/mayl730/population-of-japan/blob/main/.env.template)
 
 Put your own API key at the environment file:
 ```env
@@ -66,5 +63,5 @@ npm run dev
 `npm run build` : Build the production-ready code in the dist folder.
 
 ## Future Update
-- [] Show error message on the website under failure state
-- [] Implement test by using Cypress
+- [ ] Show error message on the website under failure state
+- [ ] Implement test by using Cypress
