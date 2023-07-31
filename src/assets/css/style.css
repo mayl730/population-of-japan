@@ -16,6 +16,10 @@ h1 {
   letter-spacing: 1px;
 }
 
+span {
+  font-family: "M PLUS 1p", sans-serif;
+}
+
 .area-label {
   display: inline;
   margin-right: 10px;

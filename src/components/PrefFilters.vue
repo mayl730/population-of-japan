@@ -13,10 +13,10 @@
       <div class="row">
         <p class="area-label">都道府県</p>
         <button @click="selectAll()" :disabled="isLoading" class="round-button">
-          全て選択する
+          <span>全て選択する</span>
         </button>
         <button @click="clearAll()" :disabled="isLoading" class="round-button">
-          クリア
+          <span>クリア</span>
         </button>
       </div>
 
@@ -46,8 +46,8 @@
 import { onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useStateStore } from "@store/state";
-import { getPrefNameFromCode } from "@utils/get_pref_name_from_code";
 import { usePopulationStore } from "@store/population";
+import { getPrefNameFromCode } from "@utils/get_pref_name_from_code";
 
 const {
   addGraphDataSetByPrefCode: addGraphDataSet,
