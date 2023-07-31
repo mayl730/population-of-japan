@@ -1,21 +1,21 @@
-[日本語版 README はこちら](https://github.com/gfngfn/SATySFi/blob/master/README-ja.md)
-
+[日本語版 README はこちら](https://github.com/mayl730/population-of-japan/blob/master/README-ja.md)
 
 # Population of Japan by prefecture
 
 A Vue3 + Vite project on showing the population trend in Japan.
-You can select the prefecture you like an learn more about Japan
 
-![image for the website](./thumbnail.jpg)
+You can select the prefecture you like an learn more about Japan's latest population trend!
 
-You can check the live site here:<br>
+![image for the website](./thumbnail.png)
+
+Live site:
 [https://population-of-japan.vercel.app/](https://population-of-japan.vercel.app/)
 
 ## Tech Stack
 - [x] [VueJS (Vue3)](https://vuejs.org/)
 - [x] [Vite](https://github.com/vitejs/vite)
 - [x] [Pinia](https://pinia.vuejs.org/) for state management
-- [x] [RESAS API](https://vuejs.org/) for getting population data in Japan
+- [x] [RESAS API](https://opendata.resas-portal.go.jp/) for getting population data in Japan
 - [x] [Highcharts](https://www.highcharts.com/) for interactive graph
 - [x] [TypeScript](https://www.typescriptlang.org/) and [Vue tsc](https://github.com/johnsoncodehk/volar/tree/master/vue-language-tools/vue-tsc) for static analysis
 - [x] [ESLint](https://eslint.vuejs.org/) for syntax checking and code styling
@@ -45,13 +45,19 @@ git clone https://github.com/mayl730/population-of-japan
 npm install
 ```
 
-3. Setup your local environment file and name it as ```.env```.
-You can check the template of env here: [environment file template](https://github.com/mayl730/population-of-japan/.env.template)
+3. Sign up and get your API key at here: [RESAS API](https://opendata.resas-portal.go.jp/)
+
+4. Setup your environment file and name it as ```.env```.
+Template of ```.env```:
+
+[environment file template](https://github.com/mayl730/population-of-japan/.env.template)
+
+Put your own API key at the environment file:
 ```env
 VITE_API_KEY=XXXXXXXXXXXXXXXXXXXXXX
 ```
 
-3. Running the Development Server
+5. Running the Development Server
 ```bash
 npm run dev
 ```
@@ -59,27 +65,6 @@ npm run dev
 ### Additional Commands
 `npm run build` : Build the production-ready code in the dist folder.
 
-
-
-
-
-
-
-# Vue 3 + TypeScript + Vite
-
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support For `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+## Future Update
+- [] Show error message on the website under failure state
+- [] Implement test by using Cypress
