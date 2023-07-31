@@ -27,8 +27,7 @@ import { useStateStore } from "@store/state";
 import PopulationChart from "@components/PopulationChart.vue";
 import PrefFilters from "@components/PrefFilters.vue";
 
-const { initializeData, populationsByPrefectures,  } =
-  usePopulationStore();
+const { initializeData, populationsByPrefectures } = usePopulationStore();
 const { checkboxCount } = storeToRefs(usePopulationStore());
 const { toggleMobilePopup } = useStateStore();
 
