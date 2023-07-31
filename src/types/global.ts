@@ -1,7 +1,3 @@
-export interface Prefectures {
-  [prefCode: number]: string;
-}
-
 export type PrefCode =
   | "1"
   | "2"
