@@ -4,8 +4,10 @@
     :class="{ active: mobilePopupIsOpened, display: mobilePopupIsOpened }"
   >
     <div class="mobile-filter-header" :class="{ active: mobilePopupIsOpened }">
-      <p class="area-label">フィルター({{ graphDataSet.length }} 件)</p>
-      <span class="material-symbols-outlined" @click="toggleMobilePopup(false)"> close </span>
+      <p class="area-label">フィルター ({{ checkboxCount }} 件)</p>
+      <span class="material-symbols-outlined" @click="toggleMobilePopup(false)">
+        close
+      </span>
     </div>
     <div class="pref-filters center" :class="{ active: mobilePopupIsOpened }">
       <div class="row">
@@ -43,37 +45,38 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
-
 import { useStateStore } from "@store/state";
 import { getPrefNameFromCode } from "@utils/get_pref_name_from_code";
 import { usePopulationStore } from "@store/population";
 
-let isChecked = ref([] as boolean[]);
 const {
   addGraphDataSetByPrefCode: addGraphDataSet,
   removeGraphDataSetByPrefCode: removeGraphDataSet,
   addAllGraphDataSet,
   removeAllGraphDataSet,
 } = usePopulationStore();
-const { graphDataSet } = storeToRefs(usePopulationStore());
+const { checkboxCount } = storeToRefs(usePopulationStore());
 const { toggleMobilePopup } = useStateStore();
 const { isLoading, mobilePopupIsOpened } = storeToRefs(useStateStore());
+let isChecked = ref([] as boolean[]);
 
 onMounted(async () => {
   for (let prefCode = 1; prefCode <= 47; prefCode++) {
     if (prefCode === 13) {
       toggleCheckbox(13);
+    } else if (prefCode === 27) {
+      toggleCheckbox(27);
     } else {
       isChecked.value.push(false);
     }
   }
 });
 
-function toggleCheckbox(prefCode: number) {
+async function toggleCheckbox(prefCode: number) {
   const index = prefCode - 1;
   isChecked.value[index] = !isChecked.value[index];
   if (isChecked.value[index]) {
-    addGraphDataSet(prefCode);
+    await addGraphDataSet(prefCode);
   } else {
     removeGraphDataSet(prefCode);
   }

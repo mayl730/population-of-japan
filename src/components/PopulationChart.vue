@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { usePopulationStore } from "../store/population";
+import { usePopulationStore } from "@store/population";
 import { formatPopulation } from "@utils/format_population";
 
 const { graphDataSet, years } = usePopulationStore();

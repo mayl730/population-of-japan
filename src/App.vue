@@ -6,7 +6,7 @@
       <button @click="toggleMobilePopup(true)" class="round-button">
         <span class="material-symbols-outlined"> filter_alt </span>
         <span class="button-text"
-          >都道府県フィルター({{ graphDataSet.length }}件)</span
+          >都道府県フィルター({{ checkboxCount }}件)</span
         >
       </button>
     </div>
@@ -27,8 +27,9 @@ import { useStateStore } from "@store/state";
 import PopulationChart from "@components/PopulationChart.vue";
 import PrefFilters from "@components/PrefFilters.vue";
 
-const { initializeData, populationsByPrefectures } = usePopulationStore();
-const { graphDataSet } = storeToRefs(usePopulationStore());
+const { initializeData, populationsByPrefectures,  } =
+  usePopulationStore();
+const { checkboxCount } = storeToRefs(usePopulationStore());
 const { toggleMobilePopup } = useStateStore();
 
 onMounted(async () => {
