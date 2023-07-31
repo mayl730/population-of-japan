@@ -11,7 +11,7 @@ export const usePopulationStore = defineStore("populations", {
     graphDataSet: [] as { name: string; data: number[] }[],
     dataAdded: {} as { [prefCode: number]: boolean },
   }),
-  getters:{
+  getters: {
     checkboxCount(state) {
       return state.graphDataSet.length;
     },
@@ -19,31 +19,12 @@ export const usePopulationStore = defineStore("populations", {
   actions: {
     async initializeData() {
       await this.getYears();
-      await this.fetchAllData();
     },
     async getYears() {
       const data = await fetchPopulationDataByPrefCode(1);
       data.forEach((item: { [x: string]: any }) =>
         this.years.push(item["year"])
       );
-    },
-    async fetchAllData() {
-      type PopulationDataItem = { value: any };
-      const fetchPromises: Promise<PopulationDataItem[]>[] = [];
-
-      for (let prefCode = 1; prefCode <= 47; prefCode++) {
-        fetchPromises.push(fetchPopulationDataByPrefCode(prefCode));
-      }
-      try {
-        const fetchedData = await Promise.all(fetchPromises);
-        for (let i = 0; i < fetchedData.length; i++) {
-          const data = fetchedData[i];
-          const populationArray = data.map((item) => item.value);
-          this.populationsByPrefectures[i + 1] = populationArray;
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
     },
     async getPopulationsByPrefCode(prefCode: number) {
       if (prefCode <= 0 || prefCode > 47) {
