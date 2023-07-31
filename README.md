@@ -2,9 +2,9 @@
 
 # Population of Japan by prefecture
 
-A Vue3 + Vite project on showing the population trend in Japan.
+Discover Japan's Population Trend with Vue3 + Vite!
 
-You can select the prefecture you like an learn more about Japan's latest population trend!
+Choose your favorite prefecture and explore Japan's latest population trend in this project. Learn more about the country's changing demographics!
 
 ![image for the website](./thumbnail.png)
 
@@ -63,5 +63,5 @@ npm run dev
 `npm run build` : Build the production-ready code in the dist folder.
 
 ## Future Update
-- [ ] Show error message on the website under failure state
-- [ ] Implement test by using Cypress
+- [ ] Display error messages on the website during failure states.
+- [ ] Conduct tests using Cypress.
