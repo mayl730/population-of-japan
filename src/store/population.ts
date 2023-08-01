@@ -12,10 +12,10 @@ export const usePopulationStore = defineStore("populations", {
     dataAdded: {} as { [prefCode: number]: boolean },
   }),
   getters: {
-    checkboxCount(state) {
+    checkboxCount(state): number {
       return state.graphDataSet.length;
     },
-    isDataMounted(state) {
+    isDataMounted(state): boolean {
       return Object.keys(state.populationsByPrefectures).length !== 0;
     },
   },
@@ -29,7 +29,7 @@ export const usePopulationStore = defineStore("populations", {
         this.years.push(item["year"])
       );
     },
-    async getPopulationsByPrefCode(prefCode: number) {
+    async getPopulationsByPrefCode(prefCode: number): Promise<number[]> {
       if (prefCode <= 0 || prefCode > 47) {
         throw new Error(
           "Invalid prefCode. Please provide a valid prefecture code.(1-47)"
